@@ -1,29 +1,35 @@
+!function() {
+  'use strict';
 
-$(document).ready(function(){
+  function fizzbuzz(countUpTo) {
+    var values = [];
 
-var fizzbuzz = function(countUpTo){
-  
-  for(i=1;i<countUpTo;i++){
-  if (i%3==0){
-    if(i%5==0){
-      $('#fizzbuzz').append("<p>" + "fizz-buzz" + "</p>");
-    }
-    else {
-      $('#fizzbuzz').append("<p>" + "fizz" + "</p>");
-    }
+    for(var i=1; i < countUpTo; i++) {
+      var value,
+          mod3 = i%3 === 0,
+          mod5 = i%5 === 0;
+
+      if (mod3) {
+        if(mod5) {
+          value = "fizz-buzz";
+        } else {
+          value = "fizz";
+        }
+      } else if (mod5) {
+        value = "buzz";
+      } else {
+        value = i;
+      }
+
+      values.push(value);
+    };
+
+    return values;
   }
-  else if (i%5==0){
-    $('#fizzbuzz').append("<p>" + "buzz" + "</p>");
-  }
-    else{
-      $('#fizzbuzz').append("<p>" + i + "</p>");
-    }
-  };
-}
 
   var stringInput = prompt();
-   var x = +stringInput;
-   fizzbuzz(x);
+  var x = +stringInput;
 
-
-});
+  // $('#fizzbuzz').html(fizzbuzz(x).join("<br>"));
+  document.getElementById('fizzbuzz').innerHTML = fizzbuzz(x).join("<br>");
+}();
